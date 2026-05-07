@@ -53,7 +53,17 @@ const navItems = [
   },
   { label: "Work", href: "/work" },
   { label: "Careers", href: "/careers" },
-  { label: "Blog & Resources", href: "/blog" },
+  {
+    label: "Blog & Resources",
+    href: "/blog",
+    singleColumn: true,
+    defaultImage: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&q=80",
+    children: [
+      "Blog",
+      "Category Leaderboard",
+      "Multi-Channel Search Report",
+    ],
+  },
   { label: "Webinar", href: "/webinar" },
 ];
 
@@ -89,6 +99,9 @@ export default function Navigation() {
     "The Team": "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=80",
     "Careers": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80",
     "Contact": "https://images.unsplash.com/photo-1596524430615-b46475ddff6e?w=600&q=80",
+    "Blog": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&q=80",
+    "Category Leaderboard": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80",
+    "Multi-Channel Search Report": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80",
   };
 
   const navContainerRef = useRef<HTMLDivElement>(null);
@@ -245,7 +258,7 @@ export default function Navigation() {
                   className={`px-4 py-2 text-base font-medium transition-colors duration-300 h-[34px] flex items-center rounded-full relative z-10 ${scrolled ? "text-black" : "text-white"} ${hoveredLabel === item.label ? "text-black!" : ""}`}
                 >
                   {item.label}
-                  {(item.label === "Services" || item.label === "Industries" || item.label === "International" || item.label === "About") && (
+                  {(item.label === "Services" || item.label === "Industries" || item.label === "International" || item.label === "About" || item.label === "Blog & Resources") && (
                     <span className="text-[10px] opacity-60 ml-1">+</span>
                   )}
                   {item.label === "Work" && (
@@ -267,7 +280,7 @@ export default function Navigation() {
                   <>
                     {/* Content Section */}
                     <div className="flex-1 min-w-max">
-                      <span className="text-black/40 text-[0.7rem] font-bold tracking-[0.2em] uppercase mb-8 block">
+                      <span className="text-black/40 text-[0.7rem] font-bold tracking-widest uppercase mb-8 block">
                         {activeDropdown}
                       </span>
                       <div className={`grid gap-x-16 gap-y-4 ${navItems.find(i => i.label === activeDropdown)?.singleColumn ? "grid-cols-1" : "grid-cols-2"}`}>
