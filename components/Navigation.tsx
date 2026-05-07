@@ -136,18 +136,18 @@ export default function Navigation() {
         height: dropdownInnerRef.current.offsetHeight,
         width: dropdownInnerRef.current.offsetWidth,
         opacity: 1,
-        duration: 0.3,
+        duration: 0.35,
         ease: "power3.out",
         overwrite: true
       });
     } else if (!activeDropdown && dropdownRef.current) {
       gsap.to(dropdownRef.current, {
         opacity: 0,
-        duration: 0.2,
+        duration: 0.25,
         ease: "power3.in",
       });
     }
-  }, [activeDropdown, hoveredChild]); // hoveredChild added to trigger height change if image changes size (though unlikely)
+  }, [activeDropdown, hoveredChild]);
 
   useEffect(() => {
     const handleScroll = () => {
