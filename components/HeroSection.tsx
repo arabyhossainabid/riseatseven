@@ -17,12 +17,27 @@ const platforms = [
   { name: "amazon", logo: "https://rise-atseven.transforms.svdcdn.com/production/images/Logos/Social/White/amazon.png?w=400&q=80&fm=webp&fit=crop&crop=focalpoint&fp-x=0.5&fp-y=0.5&dm=1750847619&s=b89cbede6552cbbce6327b02957d8fbb" },
 ];
 
+const heroImages = [
+  "/images/Emirates-airpline-in-flight.avif",
+  "/images/0B5A6875.jpg",
+  "/images/0B5A7827.jpg",
+  "/images/RedBull-Instagram-Post-45.png",
+];
+
 export default function HeroSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const imageSpanRef = useRef<HTMLSpanElement>(null);
+  const [currentImage, setCurrentImage] = useState(heroImages[0]);
 
   useEffect(() => {
+    // Rotation logic on mount
+    const savedIndex = localStorage.getItem("heroImageIndex");
+    const nextIndex = savedIndex ? (parseInt(savedIndex) + 1) % heroImages.length : 1;
+    
+    setCurrentImage(heroImages[savedIndex ? parseInt(savedIndex) : 0]);
+    localStorage.setItem("heroImageIndex", nextIndex.toString());
+
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ delay: 0.5 });
 
@@ -80,7 +95,7 @@ export default function HeroSection() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/Emirates-airpline-in-flight.avif"
+          src={currentImage}
           alt="Background"
           fill
           className="object-cover opacity-50 brightness-100 scale-110 blur-sm"
@@ -154,7 +169,7 @@ export default function HeroSection() {
             <span className="flex items-center gap-x-3 md:gap-x-6">
               <span className="headline-word inline-block">Category</span>
               <span ref={imageSpanRef} className="inline-block w-14 h-8 sm:w-24 sm:h-14 md:w-32 md:h-20 bg-white/10 rounded-xl md:rounded-2xl overflow-hidden relative translate-y-1 md:translate-y-2">
-                <Image src="/images/Emirates-airpline-in-flight.avif" alt="Small" fill className="object-cover" />
+                <Image src={currentImage} alt="Small" fill className="object-cover" />
               </span>
               <span className="headline-word inline-block">Leaders</span>
             </span>
