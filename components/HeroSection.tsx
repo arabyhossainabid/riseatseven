@@ -83,10 +83,10 @@ export default function HeroSection() {
           src="/images/Emirates-airpline-in-flight.avif"
           alt="Background"
           fill
-          className="object-cover opacity-60 brightness-75 scale-110"
+          className="object-cover opacity-50 brightness-100 scale-110 blur-sm"
           priority
         />
-        <div className="absolute inset-0 bg-linear-to-b from-black/40 via-transparent to-black/60" />
+        <div className="absolute inset-0 bg-linear-to-b from-black/5 via-transparent to-black/10" />
       </div>
 
       {/* Main content */}
