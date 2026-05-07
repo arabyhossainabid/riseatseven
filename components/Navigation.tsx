@@ -114,7 +114,7 @@ export default function Navigation() {
     closeTimeoutRef.current = setTimeout(() => {
       setActiveDropdown(null);
       setHoveredLabel(null);
-    }, 100);
+    }, 300);
   };
 
   const cancelClose = () => {
@@ -271,10 +271,12 @@ export default function Navigation() {
             {/* Shared Mega Menu Container - One single card that updates its content */}
             <div
               ref={dropdownRef}
-              className={`fixed left-1/2 -translate-x-1/2 top-[80px] bg-white rounded-4xl shadow-[0_40px_80px_-15px_rgba(0,0,0,0.15)] border border-black/5 overflow-hidden z-50 pointer-events-none opacity-0 translate-y-[10px] will-change-[width,height,transform,opacity] ${activeDropdown ? "pointer-events-auto" : ""}`}
+              className={`fixed left-1/2 -translate-x-1/2 top-[75px] bg-white rounded-4xl shadow-[0_40px_80px_-15px_rgba(0,0,0,0.15)] border border-black/5 overflow-hidden z-50 pointer-events-none opacity-0 translate-y-[10px] will-change-[width,height,transform,opacity] ${activeDropdown ? "pointer-events-auto" : ""}`}
               onMouseEnter={cancelClose}
               onMouseLeave={scheduleClose}
             >
+              {/* Invisible bridge to prevent closing when moving mouse from nav to card */}
+              <div className="absolute inset-x-0 -top-10 h-10 bg-transparent" />
               <div ref={dropdownInnerRef} className="p-12 flex gap-20 w-max h-max">
                 {activeDropdown && (
                   <>
