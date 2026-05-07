@@ -6,7 +6,6 @@ import AnnouncementBar from "@/components/AnnouncementBar";
 import HeroSection from "@/components/HeroSection";
 
 const Loader = dynamic(() => import("@/components/Loader"), { ssr: false });
-const CustomCursor = dynamic(() => import("@/components/CustomCursor"), { ssr: false });
 
 export default function Home() {
   useEffect(() => {
@@ -17,7 +16,6 @@ export default function Home() {
   return (
     <main className="bg-white text-black">
       <div className="noise" aria-hidden />
-      <CustomCursor />
       <div className="opacity-100">
         <header className="relative z-100">
           <AnnouncementBar />
