@@ -249,7 +249,7 @@ export default function Navigation() {
                 onMouseEnter={() => {
                   cancelClose();
                   setHoveredLabel(item.label);
-                  if (item.children) setActiveDropdown(item.label);
+                  setActiveDropdown(item.children ? item.label : null);
                 }}
                 onMouseLeave={scheduleClose}
               >
