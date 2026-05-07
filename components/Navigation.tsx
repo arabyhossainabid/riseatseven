@@ -93,6 +93,8 @@ export default function Navigation() {
 
   const navContainerRef = useRef<HTMLDivElement>(null);
   const hoverPillRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const dropdownInnerRef = useRef<HTMLDivElement>(null);
   const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const scheduleClose = () => {
@@ -122,17 +124,37 @@ export default function Navigation() {
     } else {
       gsap.to(hoverPillRef.current, {
         opacity: 0,
-        duration: 0.1,
+        duration: 0.15,
       });
     }
   }, [hoveredLabel]);
+
+  useEffect(() => {
+    if (activeDropdown && dropdownRef.current && dropdownInnerRef.current) {
+      gsap.to(dropdownRef.current, {
+        height: dropdownInnerRef.current.offsetHeight,
+        width: dropdownInnerRef.current.offsetWidth,
+        opacity: 1,
+        y: 0,
+        duration: 0.45,
+        ease: "expo.out",
+        overwrite: "auto",
+      });
+    } else if (!activeDropdown && dropdownRef.current) {
+      gsap.to(dropdownRef.current, {
+        opacity: 0,
+        y: 10,
+        duration: 0.3,
+        ease: "power2.in",
+      });
+    }
+  }, [activeDropdown, hoveredChild]);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       const scrollDiff = currentScrollY - lastScrollY;
 
-      // Determine if scrolled past threshold for background change
       setScrolled(currentScrollY > 50);
 
       // Show/Hide logic with thresholds
@@ -226,64 +248,68 @@ export default function Navigation() {
                     <span className="bg-[#B2F6E3] text-black text-[8px] px-1 rounded-full font-bold ml-1">3K</span>
                   )}
                 </Link>
-
-                {/* Mega Menu */}
-                {item.children && (
-                  <div
-                    className={`fixed left-1/2 -translate-x-1/2 top-[85px] transition-all duration-300 ease-[0.16,1,0.3,1] ${activeDropdown === item.label
-                      ? "opacity-100 pointer-events-auto translate-y-0 scale-100"
-                      : "opacity-0 pointer-events-none translate-y-4 scale-[0.96]"
-                      }`}
-                    onMouseEnter={cancelClose}
-                    onMouseLeave={scheduleClose}
-                  >
-                    <div className="bg-white rounded-4xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.18)] p-10 inline-flex gap-10 border border-black/5">
-                      {/* Left: Title + Links Grid */}
-                      <div className="flex-1">
-                        <span className="text-black/40 text-[0.75rem] font-semibold tracking-widest uppercase mb-6 block">Core {item.label}</span>
-                        <div className={`grid gap-x-8 gap-y-3 ${item.singleColumn ? "grid-cols-1" : "grid-cols-2"}`}>
-                          {item.children.map((child) => (
-                            <div
-                              key={child}
-                              className="group/child"
-                              onMouseEnter={() => setHoveredChild(child)}
-                              onMouseLeave={() => setHoveredChild(null)}
-                            >
-                              <Link
-                                href={`/${child.toLowerCase().replace(/\s+/g, "-")}`}
-                                className="block h-[26px] overflow-hidden"
-                              >
-                              <div className="flex flex-col transition-transform duration-400 ease-[0.16,1,0.3,1] group-hover/child:-translate-y-1/2">
-                                  <span className="h-[26px] flex items-center text-[1rem] font-bold tracking-tight text-black leading-none whitespace-nowrap">{child}</span>
-                                  <span className="h-[26px] flex items-center text-[1rem] font-bold tracking-tight text-black/50 leading-none whitespace-nowrap">{child}</span>
-                                </div>
-                              </Link>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Right: Featured Image Section */}
-                      <div className="w-[260px] relative rounded-2xl overflow-hidden group/image shrink-0">
-                        <img
-                          src={hoveredChild && childImages[hoveredChild] ? childImages[hoveredChild] : (item.defaultImage || "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80")}
-                          alt="Featured"
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover/image:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-black/5 transition-colors duration-300 group-hover/image:bg-black/10" />
-
-                        <Link
-                          href={item.href}
-                          className="absolute bottom-6 left-6 bg-black text-white px-6 py-4 rounded-full flex items-center gap-2 text-sm font-bold tracking-tight hover:bg-black/80 transition-all duration-300 shadow-lg"
-                        >
-                          View All {item.label} <span className="text-xs">↗</span>
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                )}
               </div>
             ))}
+
+            {/* Shared Mega Menu Container - One single card that updates its content */}
+            <div
+              ref={dropdownRef}
+              className={`fixed left-1/2 -translate-x-1/2 top-[80px] bg-white rounded-4xl shadow-[0_40px_80px_-15px_rgba(0,0,0,0.15)] border border-black/5 overflow-hidden z-50 pointer-events-none opacity-0 translate-y-[10px] will-change-[width,height,transform,opacity] ${activeDropdown ? "pointer-events-auto" : ""}`}
+              onMouseEnter={cancelClose}
+              onMouseLeave={scheduleClose}
+            >
+              <div ref={dropdownInnerRef} className="p-8 inline-flex gap-8">
+                {activeDropdown && (
+                  <>
+                    {/* Content Section */}
+                    <div className="flex-1">
+                      <span className="text-black/40 text-[0.65rem] font-bold tracking-[0.1em] uppercase mb-6 block">
+                        {activeDropdown}
+                      </span>
+                      <div className={`grid gap-x-10 gap-y-3 ${navItems.find(i => i.label === activeDropdown)?.singleColumn ? "grid-cols-1" : "grid-cols-2"}`}>
+                        {navItems.find(i => i.label === activeDropdown)?.children?.map((child) => (
+                          <div
+                            key={child}
+                            className="group/child"
+                            onMouseEnter={() => setHoveredChild(child)}
+                            onMouseLeave={() => setHoveredChild(null)}
+                          >
+                            <Link
+                              href={`/${child.toLowerCase().replace(/\s+/g, "-")}`}
+                              className="block h-[22px] overflow-hidden"
+                            >
+                              <div className="flex flex-col transition-transform duration-400 ease-[0.16,1,0.3,1] group-hover/child:-translate-y-1/2">
+                                <span className="h-[22px] flex items-center text-[1rem] font-bold tracking-tight text-black leading-none whitespace-nowrap">{child}</span>
+                                <span className="h-[22px] flex items-center text-[1rem] font-bold tracking-tight text-accent leading-none whitespace-nowrap">{child}</span>
+                              </div>
+                            </Link>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Featured Image Section */}
+                    <div className="w-[240px] h-[240px] relative rounded-2xl overflow-hidden group/image shrink-0 bg-[#F5F5F5]">
+                      <img
+                        src={hoveredChild && childImages[hoveredChild]
+                          ? childImages[hoveredChild]
+                          : (navItems.find(i => i.label === activeDropdown)?.defaultImage || "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80")}
+                        alt="Featured"
+                        className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover/image:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover/image:bg-black/5" />
+
+                      <Link
+                        href={navItems.find(i => i.label === activeDropdown)?.href || "#"}
+                        className="absolute bottom-6 left-6 bg-black text-white px-6 py-3 rounded-full flex items-center gap-2 text-[0.75rem] font-bold tracking-tight hover:bg-accent transition-all duration-300 shadow-xl"
+                      >
+                        All {activeDropdown} <span className="text-[10px]">↗</span>
+                      </Link>
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
           </div>
 
           {/* CTA + Hamburger */}
