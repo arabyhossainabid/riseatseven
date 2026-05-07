@@ -248,7 +248,7 @@ export default function Navigation() {
                     <span className="bg-[#B2F6E3] text-black text-[8px] px-1 rounded-full font-bold ml-1">3K</span>
                   )}
                 </Link>
-
+              </div>
             ))}
 
             {/* Shared Mega Menu Container */}
