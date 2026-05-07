@@ -117,36 +117,35 @@ export default function Navigation() {
           x: offsetLeft,
           width: offsetWidth,
           opacity: 1,
-          duration: 0.15,
-          ease: "power2.out",
+          duration: 0.25,
+          ease: "expo.out",
         });
       }
     } else {
       gsap.to(hoverPillRef.current, {
         opacity: 0,
-        duration: 0.1,
+        duration: 0.15,
       });
     }
   }, [hoveredLabel]);
 
   useEffect(() => {
     if (activeDropdown && dropdownRef.current && dropdownInnerRef.current) {
-      // Animate shared dropdown dimensions
-      const targetHeight = dropdownInnerRef.current.offsetHeight;
-      const targetWidth = dropdownInnerRef.current.offsetWidth;
-
+      // Smoothly animate shared dropdown dimensions
       gsap.to(dropdownRef.current, {
-        height: targetHeight,
-        width: targetWidth,
+        height: dropdownInnerRef.current.offsetHeight,
+        width: dropdownInnerRef.current.offsetWidth,
         opacity: 1,
-        duration: 0.4,
+        y: 0,
+        duration: 0.45,
         ease: "expo.out",
-        overwrite: "auto"
+        overwrite: "auto",
       });
     } else if (!activeDropdown && dropdownRef.current) {
       gsap.to(dropdownRef.current, {
         opacity: 0,
-        duration: 0.2,
+        y: 10,
+        duration: 0.3,
         ease: "power2.in",
       });
     }
@@ -254,22 +253,22 @@ export default function Navigation() {
               </div>
             ))}
 
-            {/* Shared Mega Menu Container */}
+            {/* Shared Mega Menu Container - Matches riseatseven.com behavior */}
             <div
               ref={dropdownRef}
-              className={`fixed left-1/2 -translate-x-1/2 top-[80px] bg-white rounded-4xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.18)] border border-black/5 overflow-hidden z-50 pointer-events-none transition-opacity duration-200 will-change-[width,height] ${activeDropdown ? "opacity-100 pointer-events-auto" : "opacity-0"}`}
+              className={`fixed left-1/2 -translate-x-1/2 top-[80px] bg-white rounded-4xl shadow-[0_40px_80px_-15px_rgba(0,0,0,0.15)] border border-black/5 overflow-hidden z-50 pointer-events-none opacity-0 translate-y-[10px] will-change-[width,height,transform,opacity] ${activeDropdown ? "pointer-events-auto" : ""}`}
               onMouseEnter={cancelClose}
               onMouseLeave={scheduleClose}
             >
-              <div ref={dropdownInnerRef} className="p-10 inline-flex gap-10">
-                {activeDropdown && navItems.find(i => i.label === activeDropdown)?.children && (
+              <div ref={dropdownInnerRef} className="p-10 inline-flex gap-10 min-w-max">
+                {activeDropdown && (
                   <>
-                    {/* Left: Title + Links Grid */}
-                    <div className="flex-1">
-                      <span className="text-black/40 text-[0.75rem] font-semibold tracking-widest uppercase mb-6 block">
-                        Core {activeDropdown}
+                    {/* Content Section */}
+                    <div className="flex-1 min-w-[300px]">
+                      <span className="text-black/40 text-[0.7rem] font-bold tracking-[0.1em] uppercase mb-8 block">
+                        {activeDropdown}
                       </span>
-                      <div className={`grid gap-x-8 gap-y-3 ${navItems.find(i => i.label === activeDropdown)?.singleColumn ? "grid-cols-1" : "grid-cols-2"}`}>
+                      <div className={`grid gap-x-12 gap-y-4 ${navItems.find(i => i.label === activeDropdown)?.singleColumn ? "grid-cols-1" : "grid-cols-2"}`}>
                         {navItems.find(i => i.label === activeDropdown)?.children?.map((child) => (
                           <div
                             key={child}
@@ -279,11 +278,11 @@ export default function Navigation() {
                           >
                             <Link
                               href={`/${child.toLowerCase().replace(/\s+/g, "-")}`}
-                              className="block h-[26px] overflow-hidden"
+                              className="block h-[24px] overflow-hidden"
                             >
-                              <div className="flex flex-col transition-transform duration-200 ease-out group-hover/child:-translate-y-1/2">
-                                <span className="h-[26px] flex items-center text-[1rem] font-bold tracking-tight text-black leading-none whitespace-nowrap">{child}</span>
-                                <span className="h-[26px] flex items-center text-[1rem] font-bold tracking-tight text-black/50 leading-none whitespace-nowrap">{child}</span>
+                              <div className="flex flex-col transition-transform duration-400 ease-[0.16,1,0.3,1] group-hover/child:-translate-y-1/2">
+                                <span className="h-[24px] flex items-center text-[1.1rem] font-bold tracking-tight text-black leading-none whitespace-nowrap">{child}</span>
+                                <span className="h-[24px] flex items-center text-[1.1rem] font-bold tracking-tight text-accent leading-none whitespace-nowrap">{child}</span>
                               </div>
                             </Link>
                           </div>
@@ -291,22 +290,22 @@ export default function Navigation() {
                       </div>
                     </div>
 
-                    {/* Right: Featured Image Section */}
-                    <div className="w-[260px] relative rounded-2xl overflow-hidden group/image shrink-0">
+                    {/* Featured Image Section */}
+                    <div className="w-[320px] h-[320px] relative rounded-2xl overflow-hidden group/image shrink-0 bg-[#F5F5F5]">
                       <img
                         src={hoveredChild && childImages[hoveredChild]
                           ? childImages[hoveredChild]
                           : (navItems.find(i => i.label === activeDropdown)?.defaultImage || "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80")}
                         alt="Featured"
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover/image:scale-105"
+                        className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover/image:scale-105"
                       />
-                      <div className="absolute inset-0 bg-black/5 transition-colors duration-300 group-hover/image:bg-black/10" />
+                      <div className="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover/image:bg-black/5" />
 
                       <Link
                         href={navItems.find(i => i.label === activeDropdown)?.href || "#"}
-                        className="absolute bottom-6 left-6 bg-black text-white px-6 py-4 rounded-full flex items-center gap-2 text-sm font-bold tracking-tight hover:bg-black/80 transition-all duration-300 shadow-lg"
+                        className="absolute bottom-8 left-8 bg-black text-white px-7 py-4 rounded-full flex items-center gap-2 text-[0.8rem] font-bold tracking-tight hover:bg-accent transition-all duration-300 shadow-xl"
                       >
-                        View All {activeDropdown} <span className="text-xs">↗</span>
+                        Explore all {activeDropdown} <span className="text-[10px]">↗</span>
                       </Link>
                     </div>
                   </>
