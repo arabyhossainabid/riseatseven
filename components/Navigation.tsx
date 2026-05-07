@@ -114,7 +114,7 @@ export default function Navigation() {
     closeTimeoutRef.current = setTimeout(() => {
       setActiveDropdown(null);
       setHoveredLabel(null);
-    }, 500);
+    }, 600);
   };
 
   const cancelClose = () => {
@@ -268,10 +268,10 @@ export default function Navigation() {
               </div>
             ))}
 
-            {/* Shared Mega Menu Container - Optimized with safe hover zone */}
+            {/* Shared Mega Menu Container - Robust Safe Hover Zone */}
             <div
               ref={dropdownRef}
-              className={`fixed left-1/2 -translate-x-1/2 top-[50px] pt-[30px] z-50 pointer-events-none opacity-0 translate-y-[10px] will-change-[width,height,transform,opacity] ${activeDropdown ? "pointer-events-auto" : ""}`}
+              className={`fixed left-1/2 -translate-x-1/2 top-[45px] pt-[35px] z-50 pointer-events-none opacity-0 translate-y-[10px] will-change-[width,height,transform,opacity] ${activeDropdown ? "pointer-events-auto" : ""}`}
               onMouseEnter={cancelClose}
               onMouseLeave={scheduleClose}
             >
