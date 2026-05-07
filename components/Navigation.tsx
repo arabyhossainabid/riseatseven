@@ -99,7 +99,7 @@ export default function Navigation() {
     closeTimeoutRef.current = setTimeout(() => {
       setActiveDropdown(null);
       setHoveredLabel(null);
-    }, 150);
+    }, 100);
   };
 
   const cancelClose = () => {
@@ -115,14 +115,14 @@ export default function Navigation() {
           x: offsetLeft,
           width: offsetWidth,
           opacity: 1,
-          duration: 0.2,
-          ease: "power3.out",
+          duration: 0.15,
+          ease: "power2.out",
         });
       }
     } else {
       gsap.to(hoverPillRef.current, {
         opacity: 0,
-        duration: 0.15,
+        duration: 0.1,
       });
     }
   }, [hoveredLabel]);
@@ -199,7 +199,7 @@ export default function Navigation() {
             {/* Sliding Hover Pill */}
             <div
               ref={hoverPillRef}
-              className="absolute h-[34px] bg-white rounded-full opacity-0 pointer-events-none z-0 shadow-sm transition-opacity duration-200 top-1/2 -translate-y-1/2"
+              className="absolute h-[34px] bg-white rounded-full opacity-0 pointer-events-none z-0 shadow-sm transition-opacity duration-150 top-1/2 -translate-y-1/2"
             />
 
             {navItems.map((item) => (
@@ -230,9 +230,9 @@ export default function Navigation() {
                 {/* Mega Menu */}
                 {item.children && (
                   <div
-                    className={`fixed left-1/2 -translate-x-1/2 top-[80px] transition-all duration-300 ease-[0.76,0,0.24,1] ${activeDropdown === item.label
+                    className={`fixed left-1/2 -translate-x-1/2 top-[80px] transition-all duration-200 ease-out ${activeDropdown === item.label
                       ? "opacity-100 pointer-events-auto translate-y-0 scale-100"
-                      : "opacity-0 pointer-events-none translate-y-3 scale-95"
+                      : "opacity-0 pointer-events-none translate-y-2 scale-[0.98]"
                       }`}
                     onMouseEnter={cancelClose}
                     onMouseLeave={scheduleClose}
@@ -253,7 +253,7 @@ export default function Navigation() {
                                 href={`/${child.toLowerCase().replace(/\s+/g, "-")}`}
                                 className="block h-[26px] overflow-hidden"
                               >
-                                <div className="flex flex-col transition-transform duration-300 ease-[0.76,0,0.24,1] group-hover/child:-translate-y-1/2">
+                                <div className="flex flex-col transition-transform duration-200 ease-out group-hover/child:-translate-y-1/2">
                                   <span className="h-[26px] flex items-center text-[1rem] font-bold tracking-tight text-black leading-none whitespace-nowrap">{child}</span>
                                   <span className="h-[26px] flex items-center text-[1rem] font-bold tracking-tight text-black/50 leading-none whitespace-nowrap">{child}</span>
                                 </div>
