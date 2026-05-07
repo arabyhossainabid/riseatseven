@@ -131,13 +131,17 @@ export default function Navigation() {
 
   useEffect(() => {
     if (activeDropdown && dropdownRef.current && dropdownInnerRef.current) {
+      // Force a re-layout check
+      const targetHeight = dropdownInnerRef.current.scrollHeight;
+      const targetWidth = dropdownInnerRef.current.scrollWidth;
+
       gsap.to(dropdownRef.current, {
-        height: dropdownInnerRef.current.offsetHeight,
-        width: dropdownInnerRef.current.offsetWidth,
+        height: targetHeight,
+        width: targetWidth,
         opacity: 1,
         y: 0,
-        duration: 0.45,
-        ease: "expo.out",
+        duration: 0.4,
+        ease: "power4.out",
         overwrite: "auto",
       });
     } else if (!activeDropdown && dropdownRef.current) {
@@ -258,15 +262,15 @@ export default function Navigation() {
               onMouseEnter={cancelClose}
               onMouseLeave={scheduleClose}
             >
-              <div ref={dropdownInnerRef} className="p-8 inline-flex gap-8">
+              <div ref={dropdownInnerRef} className="p-7 flex gap-10 w-max h-max">
                 {activeDropdown && (
                   <>
                     {/* Content Section */}
-                    <div className="flex-1">
-                      <span className="text-black/40 text-[0.65rem] font-bold tracking-[0.1em] uppercase mb-6 block">
+                    <div className="flex-1 min-w-max">
+                      <span className="text-black/40 text-[0.6rem] font-bold tracking-[0.15em] uppercase mb-5 block">
                         {activeDropdown}
                       </span>
-                      <div className={`grid gap-x-10 gap-y-3 ${navItems.find(i => i.label === activeDropdown)?.singleColumn ? "grid-cols-1" : "grid-cols-2"}`}>
+                      <div className={`grid gap-x-10 gap-y-2 ${navItems.find(i => i.label === activeDropdown)?.singleColumn ? "grid-cols-1" : "grid-cols-2"}`}>
                         {navItems.find(i => i.label === activeDropdown)?.children?.map((child) => (
                           <div
                             key={child}
@@ -279,8 +283,8 @@ export default function Navigation() {
                               className="block h-[22px] overflow-hidden"
                             >
                               <div className="flex flex-col transition-transform duration-400 ease-[0.16,1,0.3,1] group-hover/child:-translate-y-1/2">
-                                <span className="h-[22px] flex items-center text-[1rem] font-bold tracking-tight text-black leading-none whitespace-nowrap">{child}</span>
-                                <span className="h-[22px] flex items-center text-[1rem] font-bold tracking-tight text-accent leading-none whitespace-nowrap">{child}</span>
+                                <span className="h-[22px] flex items-center text-[0.95rem] font-bold tracking-tight text-black leading-none whitespace-nowrap">{child}</span>
+                                <span className="h-[22px] flex items-center text-[0.95rem] font-bold tracking-tight text-accent leading-none whitespace-nowrap">{child}</span>
                               </div>
                             </Link>
                           </div>
@@ -288,8 +292,8 @@ export default function Navigation() {
                       </div>
                     </div>
 
-                    {/* Featured Image Section */}
-                    <div className="w-[240px] h-[240px] relative rounded-2xl overflow-hidden group/image shrink-0 bg-[#F5F5F5]">
+                    {/* Featured Image Section - Dynamically sized based on content height if possible, but fixed for now for stability */}
+                    <div className="w-[200px] h-[200px] relative rounded-xl overflow-hidden group/image shrink-0 bg-[#F5F5F5] self-end">
                       <img
                         src={hoveredChild && childImages[hoveredChild]
                           ? childImages[hoveredChild]
@@ -301,9 +305,9 @@ export default function Navigation() {
 
                       <Link
                         href={navItems.find(i => i.label === activeDropdown)?.href || "#"}
-                        className="absolute bottom-6 left-6 bg-black text-white px-6 py-3 rounded-full flex items-center gap-2 text-[0.75rem] font-bold tracking-tight hover:bg-accent transition-all duration-300 shadow-xl"
+                        className="absolute bottom-4 left-4 bg-black text-white px-5 py-2.5 rounded-full flex items-center gap-2 text-[0.7rem] font-bold tracking-tight hover:bg-accent transition-all duration-300 shadow-xl"
                       >
-                        All {activeDropdown} <span className="text-[10px]">↗</span>
+                        All <span className="text-[9px]">↗</span>
                       </Link>
                     </div>
                   </>
