@@ -132,19 +132,22 @@ export default function Navigation() {
   useEffect(() => {
     if (activeDropdown && dropdownRef.current && dropdownInnerRef.current) {
       // Animate shared dropdown dimensions
+      const targetHeight = dropdownInnerRef.current.offsetHeight;
+      const targetWidth = dropdownInnerRef.current.offsetWidth;
+
       gsap.to(dropdownRef.current, {
-        height: dropdownInnerRef.current.offsetHeight,
-        width: dropdownInnerRef.current.offsetWidth,
+        height: targetHeight,
+        width: targetWidth,
         opacity: 1,
-        duration: 0.35,
-        ease: "power3.out",
-        overwrite: true
+        duration: 0.4,
+        ease: "expo.out",
+        overwrite: "auto"
       });
     } else if (!activeDropdown && dropdownRef.current) {
       gsap.to(dropdownRef.current, {
         opacity: 0,
-        duration: 0.25,
-        ease: "power3.in",
+        duration: 0.2,
+        ease: "power2.in",
       });
     }
   }, [activeDropdown, hoveredChild]);
@@ -254,7 +257,7 @@ export default function Navigation() {
             {/* Shared Mega Menu Container */}
             <div
               ref={dropdownRef}
-              className={`fixed left-1/2 -translate-x-1/2 top-[80px] bg-white rounded-4xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.18)] border border-black/5 overflow-hidden z-50 pointer-events-none transition-opacity duration-200 ${activeDropdown ? "opacity-100 pointer-events-auto" : "opacity-0"}`}
+              className={`fixed left-1/2 -translate-x-1/2 top-[80px] bg-white rounded-4xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.18)] border border-black/5 overflow-hidden z-50 pointer-events-none transition-opacity duration-200 will-change-[width,height] ${activeDropdown ? "opacity-100 pointer-events-auto" : "opacity-0"}`}
               onMouseEnter={cancelClose}
               onMouseLeave={scheduleClose}
             >
