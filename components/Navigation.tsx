@@ -262,15 +262,15 @@ export default function Navigation() {
               onMouseEnter={cancelClose}
               onMouseLeave={scheduleClose}
             >
-              <div ref={dropdownInnerRef} className="p-10 flex gap-14 w-max h-max">
+              <div ref={dropdownInnerRef} className="p-12 flex gap-20 w-max h-max">
                 {activeDropdown && (
                   <>
                     {/* Content Section */}
                     <div className="flex-1 min-w-max">
-                      <span className="text-black/40 text-[0.65rem] font-bold tracking-[0.15em] uppercase mb-6 block">
+                      <span className="text-black/40 text-[0.7rem] font-bold tracking-[0.2em] uppercase mb-8 block">
                         {activeDropdown}
                       </span>
-                      <div className={`grid gap-x-12 gap-y-3 ${navItems.find(i => i.label === activeDropdown)?.singleColumn ? "grid-cols-1" : "grid-cols-2"}`}>
+                      <div className={`grid gap-x-16 gap-y-4 ${navItems.find(i => i.label === activeDropdown)?.singleColumn ? "grid-cols-1" : "grid-cols-2"}`}>
                         {navItems.find(i => i.label === activeDropdown)?.children?.map((child) => (
                           <div
                             key={child}
@@ -280,11 +280,11 @@ export default function Navigation() {
                           >
                             <Link
                               href={`/${child.toLowerCase().replace(/\s+/g, "-")}`}
-                              className="block h-[26px] overflow-hidden"
+                              className="block h-[32px] overflow-hidden"
                             >
                               <div className="flex flex-col transition-transform duration-400 ease-[0.16,1,0.3,1] group-hover/child:-translate-y-1/2">
-                                <span className="h-[26px] flex items-center text-[1.05rem] font-bold tracking-tight text-black leading-none whitespace-nowrap">{child}</span>
-                                <span className="h-[26px] flex items-center text-[1.05rem] font-bold tracking-tight text-accent leading-none whitespace-nowrap">{child}</span>
+                                <span className="h-[32px] flex items-center text-[1.4rem] font-medium tracking-tight text-black leading-none whitespace-nowrap">{child}</span>
+                                <span className="h-[32px] flex items-center text-[1.4rem] font-medium tracking-tight text-accent leading-none whitespace-nowrap">{child}</span>
                               </div>
                             </Link>
                           </div>
@@ -293,7 +293,7 @@ export default function Navigation() {
                     </div>
 
                     {/* Featured Image Section */}
-                    <div className="w-[220px] h-[220px] relative rounded-xl overflow-hidden group/image shrink-0 bg-[#F5F5F5] self-end">
+                    <div className="w-[280px] h-[280px] relative rounded-2xl overflow-hidden group/image shrink-0 bg-[#F5F5F5] self-end">
                       <img
                         src={hoveredChild && childImages[hoveredChild]
                           ? childImages[hoveredChild]
@@ -305,9 +305,9 @@ export default function Navigation() {
 
                       <Link
                         href={navItems.find(i => i.label === activeDropdown)?.href || "#"}
-                        className="absolute bottom-4 left-4 bg-black text-white px-5 py-2.5 rounded-full flex items-center gap-2 text-[0.7rem] font-bold tracking-tight hover:bg-accent transition-all duration-300 shadow-xl"
+                        className="absolute bottom-6 left-6 bg-black text-white px-8 py-4 rounded-full flex items-center gap-2 text-[0.8rem] font-bold tracking-tight hover:bg-accent transition-all duration-300 shadow-xl"
                       >
-                        All <span className="text-[9px]">↗</span>
+                        All {activeDropdown} <span className="text-[10px]">↗</span>
                       </Link>
                     </div>
                   </>
