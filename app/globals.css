@@ -36,27 +36,9 @@ body {
   color: #fff;
   font-family: 'DM Sans', sans-serif;
   overflow-x: hidden;
-  cursor: none;
 }
 
 ::-webkit-scrollbar { width: 3px; }
-::-webkit-scrollbar-track { background: #000; }
-::-webkit-scrollbar-thumb { background: #222; border-radius: 2px; }
-
-.cursor-dot {
-  width: 6px; height: 6px; background: white; border-radius: 50%;
-  position: fixed; pointer-events: none; z-index: 9999;
-  transform: translate(-50%, -50%); mix-blend-mode: difference;
-}
-
-.cursor-ring {
-  width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.4);
-  border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998;
-  transform: translate(-50%, -50%); transition: width 0.3s ease, height 0.3s ease;
-  mix-blend-mode: difference;
-}
-
-.cursor-ring.hovering { width: 56px; height: 56px; border-color: white; }
 
 @keyframes ticker {
   0% { transform: translateX(0); }
