@@ -29,13 +29,14 @@
 
 * { box-sizing: border-box; }
 
-html { background: #000; overflow-x: hidden; }
+html { background: #000; overflow-x: hidden; cursor: auto !important; }
 
 body {
   background: #000;
   color: #fff;
   font-family: 'DM Sans', sans-serif;
   overflow-x: hidden;
+  cursor: auto !important;
 }
 
 ::-webkit-scrollbar { width: 3px; }
