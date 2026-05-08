@@ -5,6 +5,7 @@ import AnnouncementBar from "../components/announcement/AnnouncementBar";
 import HeroSection from "../components/hero/HeroSection";
 import ClientLogos from "../components/client-logos/ClientLogos";
 import AgencySection from "../components/agency/AgencySection";
+import FeaturedWorkSection from "@/components/featured-work/FeaturedWorkSection";
 
 export default function Home() {
   useEffect(() => {
@@ -25,6 +26,7 @@ export default function Home() {
       <div className="relative z-10 bg-white">
         <ClientLogos />
         <AgencySection />
+        <FeaturedWorkSection />
       </div>
     </main>
   );

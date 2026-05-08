@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 interface ButtonProps {
   href: string;
   label: string;
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "ghost";
 }
 
 function AgencyButton({ href, label, variant = "primary" }: ButtonProps) {
@@ -19,22 +19,22 @@ function AgencyButton({ href, label, variant = "primary" }: ButtonProps) {
     <Link
       href={href}
       className={cn(
-        "group inline-flex shrink-0 justify-center gap-x-2 items-center relative leading-tight tracking-tight capitalize font-sans font-medium overflow-hidden cursor-pointer focus:outline-none text-base px-6 py-3 rounded-full transition-all duration-500 ease-[0.76,0,0.24,1]",
+        "group inline-flex shrink-0 relative transition-all duration-300 ease-[0.76,0,0.24,1]",
         isPrimary
-          ? "bg-white text-black border border-transparent hover:rounded-2xl ring-1 ring-black/5"
-          : "bg-transparent text-black"
+          ? "h-[42px] rounded-[21px] hover:rounded-[6px] bg-white text-black border border-black/5 shadow-sm hover:shadow-md px-6"
+          : "h-[42px] bg-transparent text-black px-2"
       )}
     >
-      <div className="relative overflow-hidden h-5">
-        {/* First Label */}
-        <div className="flex items-center gap-x-2 transition-transform duration-500 ease-[0.76,0,0.24,1] group-hover:-translate-y-6">
-          <span className="whitespace-nowrap">{label}</span>
-          <ArrowUpRight className="w-3.5 h-3.5" />
-        </div>
-        {/* Second Label (Absolute) */}
-        <div className="absolute top-0 left-0 flex items-center gap-x-2 translate-y-6 transition-transform duration-500 ease-[0.76,0,0.24,1] group-hover:translate-y-0">
-          <span className="whitespace-nowrap">{label}</span>
-          <ArrowUpRight className="w-3.5 h-3.5" />
+      <div className="relative h-[42px] overflow-hidden w-full">
+        <div className="flex flex-col transition-transform duration-200 ease-[0.76,0,0.24,1] group-hover:-translate-y-1/2">
+          {/* First Row */}
+          <div className="flex items-center justify-center h-[42px] text-[0.95rem] font-medium whitespace-nowrap gap-2">
+            {label} <ArrowUpRight className="w-3.5 h-3.5" />
+          </div>
+          {/* Second Row */}
+          <div className="flex items-center justify-center h-[42px] text-[0.95rem] font-medium whitespace-nowrap gap-2">
+            {label} <ArrowUpRight className="w-3.5 h-3.5" />
+          </div>
         </div>
       </div>
     </Link>
@@ -46,24 +46,19 @@ export default function AgencySection() {
     <section className="w-full py-12 xl:py-24 bg-white">
       <div className="w-full px-4 md:px-7">
         <div className="w-full flex flex-col-reverse md:flex-row justify-between items-start gap-x-5 gap-y-8">
-
-          {/* Left Column (Mobile Buttons & Description) */}
           <div className="w-full flex flex-col gap-y-6">
-            {/* Mobile Buttons */}
-            <div className="flex flex-wrap gap-4 w-full md:hidden">
+            <div className="flex flex-wrap gap-x-6 items-center w-full md:hidden">
               <AgencyButton href="#" label="Our Story" variant="primary" />
-              <AgencyButton href="#" label="Our Services" variant="secondary" />
+              <AgencyButton href="#" label="Our Services" variant="ghost" />
             </div>
 
-            {/* Description Paragraph */}
-            <div className="w-full max-w-sm xl:max-w-xl 3xl:max-w-2xl 4xl:max-w-3xl">
+            <div className="w-full max-sm:max-w-xs xl:max-w-xl 3xl:max-w-2xl 4xl:max-w-3xl">
               <div className="text-left text-black text-lg md:text-xl xl:text-2xl 4xl:text-3xl font-sans font-medium tracking-tight leading-tight">
                 A global team of search-first content marketers engineering semantic relevancy & category signals for both the internet and people
               </div>
             </div>
           </div>
 
-          {/* Right Column (Heading & Desktop Buttons) */}
           <div className="w-full flex flex-col gap-y-7 md:max-w-160 xl:max-w-xl 2xl:max-w-2xl 3xl:max-w-[52rem] 4xl:max-w-5xl">
             <h2 className="flex flex-col text-left text-black text-5xl md:text-6xl xl:text-7xl 3xl:text-[5rem] 4xl:text-8xl font-sans font-medium tracking-tighter leading-[0.9]">
               <div className="flex flex-wrap items-center gap-x-3 md:gap-x-4">
@@ -85,10 +80,9 @@ export default function AgencySection() {
               </div>
             </h2>
 
-            {/* Desktop Buttons */}
-            <div className="hidden md:flex flex-wrap gap-4">
+            <div className="hidden md:flex flex-wrap gap-x-6 items-center">
               <AgencyButton href="#" label="Our Story" variant="primary" />
-              <AgencyButton href="#" label="Our Services" variant="secondary" />
+              <AgencyButton href="#" label="Our Services" variant="ghost" />
             </div>
           </div>
 
