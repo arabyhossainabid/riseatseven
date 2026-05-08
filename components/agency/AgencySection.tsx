@@ -20,8 +20,8 @@ function AgencyButton({ href, label, variant = "primary" }: ButtonProps) {
       href={href}
       className={cn(
         "group inline-flex shrink-0 justify-center gap-x-2 items-center relative leading-tight tracking-tight capitalize font-sans font-medium overflow-hidden cursor-pointer focus:outline-none text-base px-6 py-3 rounded-full transition-all duration-500 ease-[0.76,0,0.24,1]",
-        isPrimary 
-          ? "bg-white text-black border border-transparent hover:rounded-2xl ring-1 ring-black/5" 
+        isPrimary
+          ? "bg-white text-black border border-transparent hover:rounded-2xl ring-1 ring-black/5"
           : "bg-transparent text-black"
       )}
     >
@@ -46,7 +46,7 @@ export default function AgencySection() {
     <section className="w-full py-12 xl:py-24 bg-white">
       <div className="w-full px-4 md:px-7">
         <div className="w-full flex flex-col-reverse md:flex-row justify-between items-start gap-x-5 gap-y-8">
-          
+
           {/* Left Column (Mobile Buttons & Description) */}
           <div className="w-full flex flex-col gap-y-6">
             {/* Mobile Buttons */}
@@ -64,7 +64,7 @@ export default function AgencySection() {
           </div>
 
           {/* Right Column (Heading & Desktop Buttons) */}
-          <div className="w-full flex flex-col gap-y-7 md:max-w-[40rem] xl:max-w-xl 2xl:max-w-[42rem] 3xl:max-w-[52rem] 4xl:max-w-5xl">
+          <div className="w-full flex flex-col gap-y-7 md:max-w-160 xl:max-w-xl 2xl:max-w-2xl 3xl:max-w-[52rem] 4xl:max-w-5xl">
             <h2 className="flex flex-col text-left text-black text-5xl md:text-6xl xl:text-7xl 3xl:text-[5rem] 4xl:text-8xl font-sans font-medium tracking-tighter leading-[0.9]">
               <div className="flex flex-wrap items-center gap-x-3 md:gap-x-4">
                 <span>Driving</span>
@@ -91,7 +91,7 @@ export default function AgencySection() {
               <AgencyButton href="#" label="Our Services" variant="secondary" />
             </div>
           </div>
-          
+
         </div>
       </div>
     </section>
