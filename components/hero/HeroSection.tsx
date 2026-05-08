@@ -1,12 +1,15 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import { gsap } from "gsap";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { heroImages } from "./heroData";
 import { HeroAwards } from "./HeroAwards";
 import { HeroHeadline } from "./HeroHeadline";
 import { HeroPlatforms } from "./HeroPlatforms";
 import { HeroFooter } from "./HeroFooter";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLDivElement>(null);

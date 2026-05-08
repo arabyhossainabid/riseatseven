@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { NavItem, NavChild, childImages } from "./navigation";
+import { NavItem, NavChild, childImages } from "./navigationData";
 
 interface MegaMenuProps {
   activeDropdown: string | null;

@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { Plus, ArrowUpRight } from "lucide-react";
-import { navItems, NavItem, NavChild } from "./navigation";
+import { navItems, NavItem, NavChild } from "./navigationData";
 import { Logo } from "../../constants/Logo";
 import { MegaMenu } from "./MegaMenu";
 import { MobileMenu } from "./MobileMenu";
@@ -23,6 +23,7 @@ export default function Navigation() {
   const [hoveredLabel, setHoveredLabel] = useState<string | null>(null);
   const [hoveredChild, setHoveredChild] = useState<string | null>(null);
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
+  const [topOffset, setTopOffset] = useState(54);
 
   const navContainerRef = useRef<HTMLDivElement>(null);
   const hoverPillRef = useRef<HTMLDivElement>(null);
@@ -101,7 +102,8 @@ export default function Navigation() {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       const scrollDiff = currentScrollY - lastScrollY;
-      setScrolled(currentScrollY > 50);
+      setScrolled(currentScrollY > 34);
+      setTopOffset(Math.max(0, 54 - currentScrollY));
 
       if (currentScrollY <= 0) {
         setVisible(true);
@@ -169,7 +171,7 @@ export default function Navigation() {
       />
 
       <nav
-        style={{ top: scrolled ? "20px" : "54px" }}
+        style={{ top: scrolled ? "20px" : `${topOffset}px` }}
         className={cn(
           "fixed left-0 right-0 z-3000 transition-all duration-300 ease-[0.76,0,0.24,1]",
           scrolled

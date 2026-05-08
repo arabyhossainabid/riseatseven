@@ -39,7 +39,7 @@ export default function AnnouncementBar() {
 
   return (
     <>
-      <div className="bg-white w-full py-2 px-4 fixed top-0 left-0 right-0 h-[54px] z-1000 pointer-events-none" />
+      <div className="bg-white w-full py-2 px-4 absolute top-0 left-0 right-0 h-[54px] z-1000 pointer-events-none" />
       <AnnouncementPill textRef={textRef} />
       <AnnouncementCurtain curtainRef={curtainRef} />
     </>

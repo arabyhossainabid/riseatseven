@@ -1,16 +1,10 @@
 "use client";
 import { useEffect } from "react";
-import Navigation from "@/components/navigation/Navigation";
-import AnnouncementBar from "@/components/announcement/AnnouncementBar";
-import HeroSection from "@/components/hero/HeroSection";
-import ClientLogos from "@/components/ClientLogos";
-import ServicesSection from "@/components/ServicesSection";
-import FeaturedWork from "@/components/FeaturedWork";
-import MissionStatement from "@/components/MissionStatement";
-import NewsSection from "@/components/NewsSection";
-import LegacySection from "@/components/LegacySection";
-import CTAMarquee from "@/components/CTAMarquee";
-import Footer from "@/components/Footer";
+import Navigation from "../components/navigation/Navigation";
+import AnnouncementBar from "../components/announcement/AnnouncementBar";
+import HeroSection from "../components/hero/HeroSection";
+import ClientLogos from "../components/client-logos/ClientLogos";
+import AgencySection from "../components/agency/AgencySection";
 
 export default function Home() {
   useEffect(() => {
@@ -30,13 +24,7 @@ export default function Home() {
 
       <div className="relative z-10 bg-white">
         <ClientLogos />
-        <MissionStatement />
-        <FeaturedWork />
-        <ServicesSection />
-        <LegacySection />
-        <CTAMarquee />
-        <NewsSection />
-        <Footer />
+        <AgencySection />
       </div>
     </main>
   );
