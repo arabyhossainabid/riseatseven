@@ -99,7 +99,7 @@ export default function FeaturedWorkSection() {
       {/* Custom Cursor */}
       <div 
         ref={cursorRef} 
-        className="fixed top-0 left-0 w-20 h-20 lg:w-24 lg:h-24 bg-[#c4fdf5] rounded-full z-[999999] pointer-events-none flex items-center justify-center shadow-2xl overflow-hidden"
+        className="fixed top-0 left-0 w-20 h-20 lg:w-24 lg:h-24 bg-[#c4fdf5] rounded-full z-999999 pointer-events-none flex items-center justify-center shadow-2xl overflow-hidden"
       >
         <ArrowUpRight className="w-6 h-6 lg:w-8 lg:h-8 text-black" />
       </div>
