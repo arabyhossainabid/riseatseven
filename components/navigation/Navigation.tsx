@@ -85,7 +85,7 @@ export default function Navigation() {
           x: offsetLeft,
           width: offsetWidth,
           opacity: 1,
-          duration: 0.15,
+          duration: 0.20,
           ease: "power2.out",
         });
       }
@@ -128,7 +128,7 @@ export default function Navigation() {
           opacity: 1,
           y: 0,
           scale: 1,
-          duration: 0.25,
+          duration: 0.50,
           ease: "expo.out",
           overwrite: true,
         });
@@ -139,7 +139,7 @@ export default function Navigation() {
         opacity: 0,
         y: 4,
         scale: 0.99,
-        duration: 0.15,
+        duration: 0.30,
         ease: "power2.inOut",
       });
     }
