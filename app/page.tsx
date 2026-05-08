@@ -1,27 +1,42 @@
 "use client";
-import { useState, useEffect } from "react";
-import dynamic from "next/dynamic";
-import Navigation from "@/components/Navigation";
-import AnnouncementBar from "@/components/AnnouncementBar";
-import HeroSection from "@/components/HeroSection";
-
-const Loader = dynamic(() => import("@/components/Loader"), { ssr: false });
+import { useEffect } from "react";
+import Navigation from "@/components/navigation/Navigation";
+import AnnouncementBar from "@/components/announcement/AnnouncementBar";
+import HeroSection from "@/components/hero/HeroSection";
+import ClientLogos from "@/components/ClientLogos";
+import ServicesSection from "@/components/ServicesSection";
+import FeaturedWork from "@/components/FeaturedWork";
+import MissionStatement from "@/components/MissionStatement";
+import NewsSection from "@/components/NewsSection";
+import LegacySection from "@/components/LegacySection";
+import CTAMarquee from "@/components/CTAMarquee";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   useEffect(() => {
-    // Smooth scroll to top on refresh
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "instant" });
   }, []);
 
   return (
-    <main className="bg-white text-black">
+    <main className="bg-white text-black min-h-screen">
       <div className="noise" aria-hidden />
-      <div className="opacity-100">
-        <header className="relative z-100">
-          <AnnouncementBar />
-        </header>
-        <Navigation />
-        <HeroSection />
+
+      <AnnouncementBar />
+      <Navigation />
+
+      <div className="h-[54px]" />
+
+      <HeroSection />
+
+      <div className="relative z-10 bg-white">
+        <ClientLogos />
+        <MissionStatement />
+        <FeaturedWork />
+        <ServicesSection />
+        <LegacySection />
+        <CTAMarquee />
+        <NewsSection />
+        <Footer />
       </div>
     </main>
   );
