@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { navItems } from "./navigation";
-import { Logo } from "../Logo";
+import { Logo } from "../../constants/Logo";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 

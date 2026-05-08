@@ -6,7 +6,7 @@ import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { Plus, ArrowUpRight } from "lucide-react";
 import { navItems, NavItem, NavChild } from "./navigation";
-import { Logo } from "../Logo";
+import { Logo } from "../../constants/Logo";
 import { MegaMenu } from "./MegaMenu";
 import { MobileMenu } from "./MobileMenu";
 
