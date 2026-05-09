@@ -7,6 +7,7 @@ import ClientLogos from "../components/client-logos/ClientLogos";
 import AgencySection from "../components/agency/AgencySection";
 import FeaturedWorkSection from "@/components/featured-work/FeaturedWorkSection";
 import ServicesSection from "@/components/services/ServicesSection";
+import MarqueeSection from "@/components/marquee/MarqueeSection";
 
 export default function Home() {
   useEffect(() => {
@@ -29,6 +30,7 @@ export default function Home() {
         <AgencySection />
         <FeaturedWorkSection />
         <ServicesSection />
+        <MarqueeSection />
       </div>
     </main>
   );
