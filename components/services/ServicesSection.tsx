@@ -65,17 +65,15 @@ export default function ServicesSection() {
               <div className="col-span-12 md:col-span-3 md:items-center md:justify-end hidden md:flex">
                 <Link
                   href="/services"
-                  className="group inline-flex shrink-0 justify-center gap-x-2 items-center relative leading-tight tracking-tight capitalize font-sans font-medium overflow-hidden border border-black/5 cursor-pointer focus:outline-none md:w-auto text-sm px-6 py-3 rounded-full transition-all hover:rounded-xl bg-white text-black shadow-sm hover:shadow-md flex-row-reverse"
+                  className="group inline-flex shrink-0 relative transition-all duration-300 ease-[0.76,0,0.24,1] h-[42px] rounded-[21px] hover:rounded-[6px] bg-white text-black border border-black/5 shadow-sm hover:shadow-md px-6"
                 >
-                  <div className="relative overflow-hidden h-[20px]">
-                    <div className="flex flex-col transition-transform duration-300 ease-[0.76,0,0.24,1] group-hover:-translate-y-1/2">
-                      <div className="flex items-center gap-x-1.5 h-[20px]">
-                        <span>View All Services</span>
-                        <MoveUpRight className="w-3.5 h-3.5" />
+                  <div className="relative h-[42px] overflow-hidden w-full">
+                    <div className="flex flex-col transition-transform duration-200 ease-[0.76,0,0.24,1] group-hover:-translate-y-1/2">
+                      <div className="flex items-center justify-center h-[42px] text-[0.95rem] font-medium whitespace-nowrap gap-2">
+                        View All Services <MoveUpRight className="w-3.5 h-3.5" />
                       </div>
-                      <div className="flex items-center gap-x-1.5 h-[20px]">
-                        <span>View All Services</span>
-                        <MoveUpRight className="w-3.5 h-3.5" />
+                      <div className="flex items-center justify-center h-[42px] text-[0.95rem] font-medium whitespace-nowrap gap-2">
+                        View All Services <MoveUpRight className="w-3.5 h-3.5" />
                       </div>
                     </div>
                   </div>
@@ -100,16 +98,7 @@ export default function ServicesSection() {
                     {/* Foreground Content */}
                     <div className="col-start-1 row-start-1 relative z-20 py-5 lg:py-8 flex items-center gap-3 text-black transition-colors duration-500 group-hover:text-white pl-2 lg:pl-4">
 
-                      {/* Mobile Thumbnail */}
-                      <div className="inline-flex relative w-12 h-12 rounded-lg overflow-hidden md:hidden shrink-0">
-                        <Image
-                          src={service.image}
-                          alt={service.title}
-                          fill
-                          className="object-cover"
-                          unoptimized
-                        />
-                      </div>
+
 
                       {/* Desktop Text + Arrow Hover */}
                       <div className="transition-transform duration-300">
@@ -117,7 +106,7 @@ export default function ServicesSection() {
                           {/* Arrow Container */}
                           <div className="absolute left-0 top-1/2 -translate-y-1/2 w-8 lg:w-10 h-10 overflow-hidden flex items-center justify-center">
                             <div className="transition-all duration-300 -translate-x-full translate-y-full -rotate-45 opacity-0 group-hover:rotate-0 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100">
-                              <i className="fa-regular fa-sharp fa-arrow-up-right text-2xl lg:text-4xl" aria-hidden="true"></i>
+                              <MoveUpRight className="w-6 h-6 lg:w-10 lg:h-10" strokeWidth={1.5} />
                             </div>
                           </div>
 
@@ -154,20 +143,18 @@ export default function ServicesSection() {
           </div>
 
           {/* Mobile Button */}
-          <div className="col-span-12 md:hidden mt-6">
+          <div className="col-span-12 md:hidden mt-6 flex justify-center w-full">
             <Link
               href="/services"
-              className="group inline-flex shrink-0 justify-center gap-x-2 items-center relative leading-tight tracking-tight capitalize font-sans font-medium overflow-hidden border border-black/5 cursor-pointer focus:outline-none w-full text-sm px-6 py-3 rounded-full transition-all hover:rounded-xl bg-white text-black shadow-sm hover:shadow-md flex-row-reverse"
+              className="group inline-flex shrink-0 relative transition-all duration-300 ease-[0.76,0,0.24,1] h-[42px] rounded-[21px] hover:rounded-[6px] bg-white text-black border border-black/5 shadow-sm hover:shadow-md px-6"
             >
-              <div className="relative overflow-hidden h-[20px] w-full flex justify-center">
-                <div className="flex flex-col transition-transform duration-300 ease-[0.76,0,0.24,1] group-hover:-translate-y-1/2">
-                  <div className="flex items-center gap-x-1.5 h-[20px]">
-                    <span>View All Services</span>
-                    <MoveUpRight className="w-3.5 h-3.5" />
+              <div className="relative h-[42px] overflow-hidden w-full">
+                <div className="flex flex-col transition-transform duration-200 ease-[0.76,0,0.24,1] group-hover:-translate-y-1/2">
+                  <div className="flex items-center justify-center h-[42px] text-[0.95rem] font-medium whitespace-nowrap gap-2">
+                    View All Services <MoveUpRight className="w-3.5 h-3.5" />
                   </div>
-                  <div className="flex items-center gap-x-1.5 h-[20px]">
-                    <span>View All Services</span>
-                    <MoveUpRight className="w-3.5 h-3.5" />
+                  <div className="flex items-center justify-center h-[42px] text-[0.95rem] font-medium whitespace-nowrap gap-2">
+                    View All Services <MoveUpRight className="w-3.5 h-3.5" />
                   </div>
                 </div>
               </div>
