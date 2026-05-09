@@ -47,7 +47,7 @@ export default function FeaturedWorkSection() {
           end: `+=${projects.length * 900}`, 
           pin: true,
           scrub: 0.1, 
-          onUpdate: (self) => {
+          onUpdate: (self: any) => {
             const index = Math.min(
               Math.floor(self.progress * projects.length),
               projects.length - 1

@@ -6,6 +6,7 @@ import HeroSection from "../components/hero/HeroSection";
 import ClientLogos from "../components/client-logos/ClientLogos";
 import AgencySection from "../components/agency/AgencySection";
 import FeaturedWorkSection from "@/components/featured-work/FeaturedWorkSection";
+import ServicesSection from "@/components/services/ServicesSection";
 
 export default function Home() {
   useEffect(() => {
@@ -27,6 +28,7 @@ export default function Home() {
         <ClientLogos />
         <AgencySection />
         <FeaturedWorkSection />
+        <ServicesSection />
       </div>
     </main>
   );
